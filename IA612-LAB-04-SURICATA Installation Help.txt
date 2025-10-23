@@ -1,0 +1,70 @@
+Step 2: Downloading the Suricata File 
+
+1. sudo wget https://www.openinfosecfoundation.org/download/suricata-5.0.3.tar.gz
+
+2. sudo tar -xvzf suricata-5.0.3.tar.gz 
+
+3.cd suricata-5.0.3
+
+4.sudo ./configure --enable-nfqueue --prefix=/usr --sysconfdir=/ 
+
+5.sudo ./configure --prefix=/usr/ --sysconfdir=/etc/ --localstatedir=/var/
+
+6.sudo make
+
+7.sudo make install-full
+
+8.sudo make install-rules
+
+9.cat /var/lib/suricata/rules/suricata.rules 
+
+
+From the SURICATA WEB:
+https://suricata.readthedocs.io/en/suricata-6.0.0/install.html
+
+tar xzvf suricata-6.0.0.tar.gz
+cd suricata-6.0.0
+./configure
+make
+make install
+
+If nothing worked:
+1.sudo add-apt-repository ppa:oisf/suricata-stable 
+2.sudo apt-get update 
+3sudo apt-get install suricata 
+
+This will install Suricata into /usr/local/bin/, 
+use the default configuration in /usr/local/etc/suricata/ and 
+will output to /usr/local/var/log/suricata
+
+**************************************************************************
+Additinal NOTES-01:
+
+To build and install run 'make' and 'make install'.
+
+You can run 'make install-conf' if you want to install initial configuration
+files to //suricata/. Running 'make install-full' will install configuration
+and rules and provide you a ready-to-run suricata.
+
+To install Suricata into /usr/bin/suricata, have the config in
+/etc/suricata and use /var/log/suricata as log dir, use:
+./configure --prefix=/usr/ --sysconfdir=/etc/ --localstatedir=/var/
+
+
+****************************************************************************
+Additinal NOTES-02:
+
+You can now start suricata by running as root something like:
+  /usr/bin/suricata -c /etc/suricata/suricata.yaml -i eth0
+
+If a library like libhtp.so is not found, you can run suricata with:
+  LD_LIBRARY_PATH=/usr/lib /usr/bin/suricata -c /etc/suricata/suricata.yaml -i eth0
+
+The Emerging Threats Open rules are now installed. Rules can be
+updated and managed with the suricata-update tool.
+
+For more information please see:
+  https://suricata.readthedocs.io/en/latest/rule-management/index.html
+
+make[1]: Leaving directory '/home/osboxes/suricata-5.0.3'
+
